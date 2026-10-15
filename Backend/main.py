@@ -142,7 +142,7 @@ def startup_seed_db():
         # 3. Default Profile
         profile = db.query(models.BusinessProfile).first()
         if not profile:
-            profile = models.BusinessProfile(owner_name="Ramesh Mehta", business_name="AscentiQ AI Group")
+            profile = models.BusinessProfile(owner_name="Atishay Jain", business_name="AscentiQ AI Group")
             db.add(profile)
             db.commit()
 

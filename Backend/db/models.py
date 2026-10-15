@@ -168,7 +168,7 @@ class BusinessProfile(Base):
     
     # Mandatory Fields (default empty string rakh sakte ho)
     business_name = Column(String, default="Mehta Realty Group1", nullable=False)
-    owner_name = Column(String, default="Ramesh Mehta", nullable=False)
+    owner_name = Column(String, default="Atishay Jain", nullable=False)
     phone_number = Column(String, default="+91 98765 43210", nullable=False)
     pan = Column(String, default="", nullable=False)
     state = Column(String, default="Kerala", nullable=False)
