@@ -130,11 +130,11 @@ def startup_seed_db():
         print("🛡️ All Tables Safely Verified & Migrated!")
 
         # 2. Default Admin User
-        user = db.query(models.User).filter(models.User.email == "aosaf@greenvalleygroup.com").first()
+        user = db.query(models.User).filter(models.User.email == "atishay@gmail.com").first()
         if not user:
-            hashed_pw = get_password_hash("aosaf@123")
+            hashed_pw = get_password_hash("atishay@123")
             # Yaha mistake thi "aosaf@greenvalleygroup" likha tha pehle bina .com ke
-            new_user = models.User(email="aosaf@greenvalleygroup.com", hashed_password=hashed_pw)
+            new_user = models.User(email="atishay@gmail.com", hashed_password=hashed_pw)
             db.add(new_user)
             db.commit()
             print("✅ Default Admin Created!")
