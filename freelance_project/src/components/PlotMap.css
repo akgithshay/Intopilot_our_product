@@ -1,0 +1,216 @@
+/* src/components/PlotMap.css */
+.plotmap-wrapper {
+  --page: #F4F0E6; --sec: #F8F4E9; --off: #FEFCF6; --white: #FFFFFF; --active: #E6EBE7; --green: #0D3613; --muted: #7A7D77;
+  --line: #E6DFCD; --line2: #D6CEB9; --sold: #C3D7C8; --sold2: #AAC5B1; --road: #EDE6D5; --warn: #9A3B2E;
+  --sh: 0 1px 2px rgba(13,54,19,.05), 0 8px 24px rgba(13,54,19,.05);
+  --font: 'Manrope','Segoe UI',system-ui,sans-serif; --mono: 'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  
+  background: var(--page); color: var(--green); font: 14px/1.5 var(--font); font-feature-settings: 'tnum' 1;
+  padding: 16px 24px 32px; min-height: 100vh; width: 100%; box-sizing: border-box;
+}
+
+.plotmap-wrapper * { box-sizing: border-box; }
+.plotmap-wrapper h1, .plotmap-wrapper h2, .plotmap-wrapper h3, .plotmap-wrapper p { margin: 0; }
+.plotmap-wrapper button { font-family: inherit; }
+.plotmap-wrapper button:focus-visible, .plotmap-wrapper select:focus-visible, .plotmap-wrapper input:focus-visible, .plotmap-wrapper .plot:focus-visible, .plotmap-wrapper .pcard:focus-visible { outline: 2px solid var(--green); outline-offset: 2px; }
+.plotmap-wrapper .plot:focus { outline: none; }
+
+.plotmap-wrapper .app { max-width: 1600px; margin: 0 auto; display: block; }
+.plotmap-wrapper .main { display: flex; flex-direction: column; gap: 16px; min-width: 0; width: 100%; }
+
+.plotmap-wrapper .top { display: flex; justify-content: space-between; align-items: center; gap: 12px 16px; flex-wrap: wrap; }
+.plotmap-wrapper .crumb { color: var(--muted); font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.plotmap-wrapper .crumb b { color: var(--green); font-weight: 800; }
+.plotmap-wrapper .top-r { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.plotmap-wrapper .search { display: flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--line2); border-radius: 12px; padding: 0 12px; color: var(--muted); min-width: 260px; }
+.plotmap-wrapper .search input { border: 0; outline: 0; background: transparent; font: 500 13.5px var(--font); color: var(--green); padding: 10px 0; width: 100%; min-width: 0; }
+.plotmap-wrapper .search:focus-within { border-color: var(--green); }
+
+.plotmap-wrapper .btn { font: 700 13px var(--font); background: var(--white); color: var(--green); border: 1px solid var(--line2); border-radius: 12px; padding: 9px 14px; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; transition: background .15s, border-color .15s; }
+.plotmap-wrapper .btn:hover { background: var(--active); }
+.plotmap-wrapper .btn.pri { background: var(--active); border-color: var(--green); }
+.plotmap-wrapper .btn.pri:hover { background: var(--white); }
+.plotmap-wrapper .btn.sm { padding: 6px 10px; font-size: 12px; border-radius: 10px; }
+.plotmap-wrapper .btn:disabled { color: var(--muted); cursor: default; background: var(--white); border-color: var(--line); }
+.plotmap-wrapper .btn.danger { color: var(--warn); border-color: #DCC3BD; }
+.plotmap-wrapper .iconbtn { width: 36px; height: 36px; display: inline-grid; place-items: center; background: var(--white); color: var(--green); border: 1px solid var(--line2); border-radius: 11px; cursor: pointer; padding: 0; }
+.plotmap-wrapper .iconbtn:hover { background: var(--active); }
+
+.plotmap-wrapper .projects { display: flex; gap: 8px; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding: 2px; }
+.plotmap-wrapper .projects::-webkit-scrollbar { display: none; }
+.plotmap-wrapper .ptab { flex: none; background: var(--off); border: 1px solid var(--line); border-radius: 99px; padding: 7px 14px; font-weight: 700; font-size: 13px; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; transition: background .15s, border-color .15s; }
+.plotmap-wrapper .ptab i { font-style: normal; font-size: 11px; font-weight: 700; color: var(--muted); }
+.plotmap-wrapper .ptab:hover { background: var(--white); color: var(--green); }
+.plotmap-wrapper .ptab.on { background: var(--active); border-color: var(--green); color: var(--green); }
+.plotmap-wrapper .ptab.on i { color: var(--green); }
+.plotmap-wrapper .ptab.add { border-style: dashed; background: transparent; margin-left: auto; }
+
+.plotmap-wrapper .ov2 { display: grid; grid-template-columns: minmax(0,1fr) 300px; background: var(--off); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--sh); overflow: hidden; }
+.plotmap-wrapper .ovL { padding: 24px 28px 22px; min-width: 0; display: flex; flex-direction: column; justify-content: center; }
+.plotmap-wrapper .ovname { display: flex; align-items: baseline; gap: 12px 16px; flex-wrap: wrap; }
+.plotmap-wrapper .ovname h1 { font-size: 15px; font-weight: 800; letter-spacing: 0; }
+.plotmap-wrapper .ovname span { color: var(--muted); font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 5px; }
+.plotmap-wrapper .bignum { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin: 14px 0 18px; }
+.plotmap-wrapper .bignum b { font-size: 60px; font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+.plotmap-wrapper .bignum span { color: var(--muted); font-weight: 700; font-size: 14px; }
+.plotmap-wrapper .bignum span b { font-size: inherit; letter-spacing: 0; color: var(--green); }
+.plotmap-wrapper .strip { display: flex; gap: 3px; height: 34px; }
+.plotmap-wrapper .strip i { flex: 1 1 0; min-width: 2px; border-radius: 4px; background: var(--active); cursor: pointer; transition: transform .12s; }
+.plotmap-wrapper .strip i.s { background: var(--sold2); box-shadow: inset 0 0 0 1px var(--green); }
+.plotmap-wrapper .strip i:hover { transform: scaleY(1.18); }
+.plotmap-wrapper .stripcap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 10px; color: var(--muted); font-size: 12px; font-weight: 700; }
+.plotmap-wrapper .stripcap b { color: var(--green); }
+.plotmap-wrapper .ovR { background: var(--sec); border-left: 1px solid var(--line); display: flex; flex-direction: column; }
+.plotmap-wrapper .ost { padding: 15px 24px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 2px; flex: 1; justify-content: center; min-width: 0; }
+.plotmap-wrapper .ost:first-child { border-top: 0; }
+.plotmap-wrapper .ost span { font: 500 11px/1 var(--mono); letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-bottom: 4px; }
+.plotmap-wrapper .ost b { font-size: 20px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+.plotmap-wrapper .ost small { color: var(--muted); font-size: 12px; font-weight: 600; }
+
+/* Plot Details Dialog Modal Fix */
+.plotmap-wrapper .dlg { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(13,54,19,.4); backdrop-filter: blur(4px); }
+.plotmap-wrapper .dlg[hidden] { display: none !important; }
+.plotmap-wrapper .dlgbk { position: absolute; inset: 0; }
+.plotmap-wrapper .dlgcard { position: relative; z-index: 100000; width: min(860px,100%); max-height: 90vh; overflow: auto; display: grid; grid-template-columns: 300px minmax(0,1fr); background: var(--white); border-radius: 28px; box-shadow: 0 30px 80px rgba(13,54,19,.38); outline: none; }
+
+.plotmap-wrapper .dl-left { background: var(--sec); border-right: 1px solid var(--line); padding: 30px 28px 28px; display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+.plotmap-wrapper .dl-left .pbig { font-size: 104px; font-weight: 800; letter-spacing: -.05em; line-height: .9; overflow-wrap: anywhere; }
+.plotmap-wrapper .dl-left .pproj { margin-top: 8px; font-size: 13px; }
+.plotmap-wrapper .dl-shape { margin-top: auto; height: 170px; display: flex; }
+.plotmap-wrapper .dl-shape svg { width: 100%; height: 100%; }
+.plotmap-wrapper .dl-right { padding: 26px 32px 30px; display: flex; flex-direction: column; gap: 24px; min-width: 0; }
+.plotmap-wrapper .dl-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+.plotmap-wrapper .dl-btns { display: flex; gap: 8px; }
+.plotmap-wrapper .dl-h { font-size: 22px; font-weight: 800; letter-spacing: -.02em; margin: 0; }
+.plotmap-wrapper .dl-hero b { display: block; font-size: 54px; font-weight: 800; letter-spacing: -.04em; line-height: 1.05; }
+.plotmap-wrapper .facts { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); margin-top: auto; }
+.plotmap-wrapper .fact { padding: 18px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+.plotmap-wrapper .fact:nth-child(even) { padding-left: 24px; border-left: 1px solid var(--line); }
+.plotmap-wrapper .fact:nth-last-child(-n+2) { border-bottom: 0; }
+.plotmap-wrapper .fv { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.plotmap-wrapper .fv b { font-size: 19px; font-weight: 800; letter-spacing: -.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.plotmap-wrapper .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; }
+.plotmap-wrapper #sale { display: contents; }
+.plotmap-wrapper .f>label>span { font-size: 12px; font-weight: 700; color: var(--muted); }
+.plotmap-wrapper .lnk { background: none; border: 0; padding: 2px 0 0; color: var(--green); font: 700 12px var(--font); text-align: left; cursor: pointer; text-decoration: underline; text-underline-offset: 3px; width: fit-content; }
+
+.plotmap-wrapper .stage { display: grid; grid-template-columns: minmax(0,1fr) 300px; gap: 16px; align-items: start; margin-top: 20px; }
+.plotmap-wrapper .mapcard { background: var(--off); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--sh); overflow: hidden; min-width: 0; }
+.plotmap-wrapper .mtools { display: flex; flex-wrap: wrap; gap: 8px 10px; align-items: center; padding: 12px 14px; border-bottom: 1px solid var(--line); }
+.plotmap-wrapper .mtools .sp { flex: 1; }
+.plotmap-wrapper .seg { display: inline-flex; background: var(--sec); border: 1px solid var(--line); border-radius: 12px; padding: 3px; }
+.plotmap-wrapper .seg button { border: 0; background: transparent; color: var(--muted); font: 700 13px var(--font); padding: 6px 12px; border-radius: 9px; cursor: pointer; display: inline-flex; align-items: center; gap: 7px; }
+.plotmap-wrapper .seg button[aria-pressed=true] { background: var(--white); color: var(--green); box-shadow: 0 1px 3px rgba(13,54,19,.12); }
+.plotmap-wrapper .chip { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: var(--green); border: 1px solid var(--line2); border-radius: 20px; padding: 5px 11px; font: 700 12.5px var(--font); cursor: pointer; }
+.plotmap-wrapper .chip[aria-pressed=false] { opacity: .45; }
+.plotmap-wrapper .sw { width: 16px; height: 11px; border-radius: 3px; border: 1.5px solid var(--muted); background: var(--white); }
+.plotmap-wrapper .sw.sold { background: var(--sold); border-color: var(--green); }
+.plotmap-wrapper .fpill { display: inline-flex; align-items: center; gap: 6px; background: var(--active); border-radius: 20px; padding: 4px 6px 4px 11px; font-weight: 700; font-size: 12.5px; }
+.plotmap-wrapper .fpill button { border: 0; background: rgba(13,54,19,.1); color: var(--green); width: 20px; height: 20px; border-radius: 50%; cursor: pointer; line-height: 1; font-size: 14px; padding: 0; }
+.plotmap-wrapper .mapbox { position: relative; background: var(--white); }
+.plotmap-wrapper svg.map { display: block; width: 100%; height: auto; user-select: none; -webkit-user-select: none; touch-action: pan-y pinch-zoom; }
+.plotmap-wrapper svg.map.drawing { touch-action: none; cursor: crosshair; }
+.plotmap-wrapper .paper { fill: var(--white); }
+.plotmap-wrapper .outside { fill: var(--sec); }
+.plotmap-wrapper .bound { fill: none; stroke: var(--green); stroke-opacity: .38; stroke-width: 1.6; stroke-dasharray: 2 7; stroke-linecap: round; }
+.plotmap-wrapper .road { fill: none; stroke: var(--road); stroke-width: 54; stroke-linejoin: round; }
+.plotmap-wrapper .roadc { fill: none; stroke: var(--line2); stroke-width: 1.4; stroke-dasharray: 10 9; }
+.plotmap-wrapper .rl { font: 700 9.5px var(--font); letter-spacing: .22em; fill: var(--muted); text-anchor: middle; dominant-baseline: middle; paint-order: stroke; stroke: var(--road); stroke-width: 12px; }
+.plotmap-wrapper .gate rect { fill: var(--green); opacity: .92; }
+.plotmap-wrapper .gate text { font: 800 8.5px var(--font); letter-spacing: .14em; fill: var(--white); text-anchor: middle; dominant-baseline: middle; }
+.plotmap-wrapper .na { fill: var(--green); }
+.plotmap-wrapper .nt { font: 800 11px var(--font); fill: var(--green); text-anchor: middle; }
+.plotmap-wrapper .sb { stroke: var(--green); stroke-width: 2; fill: none; }
+.plotmap-wrapper .sbt { font: 700 10px var(--font); fill: var(--green); letter-spacing: .06em; }
+.plotmap-wrapper .plot { cursor: pointer; }
+.plotmap-wrapper .plot polygon { fill: var(--white); stroke: var(--muted); stroke-width: 1.2; stroke-linejoin: round; transition: fill .12s; }
+.plotmap-wrapper .plot.sold polygon { fill: var(--sold); stroke: var(--green); stroke-width: 1.4; }
+.plotmap-wrapper .hasbg .plot polygon { fill: rgba(255,255,255,0); stroke: rgba(13,54,19,.38); stroke-width: 1; }
+.plotmap-wrapper .hasbg .plot.sold polygon { fill: rgba(120,170,135,.26); stroke: rgba(13,54,19,.75); stroke-width: 1.3; }
+.plotmap-wrapper .hasbg .plot:hover polygon { fill: rgba(13,54,19,.14); stroke: var(--green); stroke-width: 2; }
+.plotmap-wrapper .hasbg .plot.sold:hover polygon { fill: rgba(13,54,19,.22); }
+.plotmap-wrapper .hasbg .plot.sel polygon { fill: rgba(13,54,19,.16); filter: none; stroke-width: 3; }
+.plotmap-wrapper .hasbg:not(.lbls) .plot text { display: none; }
+.plotmap-wrapper .hasbg .drf { fill-opacity: .2; }
+.plotmap-wrapper .hasbg .pend { fill-opacity: .22; }
+.plotmap-wrapper .plot:hover polygon { fill: var(--active); }
+.plotmap-wrapper .plot.sold:hover polygon { fill: var(--sold2); }
+.plotmap-wrapper .plot.sel polygon { stroke: var(--green); stroke-width: 3.2; filter: drop-shadow(0 2px 5px rgba(13,54,19,.35)); }
+.plotmap-wrapper .plot.dim { opacity: .17; }
+.plotmap-wrapper .plot .n { font-family: var(--mono); font-weight: 500; fill: var(--muted); text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.plotmap-wrapper .plot.sold .n { fill: var(--green); }
+.plotmap-wrapper .plot .a { font-family: var(--mono); font-weight: 500; fill: var(--green); opacity: .8; text-anchor: middle; dominant-baseline: middle; pointer-events: none; }
+.plotmap-wrapper .dr { fill: none; stroke: var(--green); stroke-width: 2; stroke-dasharray: 6 4; }
+.plotmap-wrapper .drf { fill: var(--active); fill-opacity: .75; stroke: none; }
+.plotmap-wrapper .pend { fill: var(--active); fill-opacity: .85; stroke: var(--green); stroke-width: 2.4; stroke-dasharray: 7 4; }
+.plotmap-wrapper .dot { fill: var(--green); stroke: var(--white); stroke-width: 1.5; }
+.plotmap-wrapper .d0 { fill: none; stroke: var(--green); stroke-width: 2; }
+.plotmap-wrapper .snap { fill: none; stroke: var(--green); stroke-width: 2; }
+.plotmap-wrapper .float { position: absolute; top: 12px; left: 50%; transform: translateX(-50%); background: var(--white); border: 1px solid var(--green); border-radius: 14px; box-shadow: 0 8px 24px rgba(13,54,19,.16); padding: 8px 10px 8px 14px; display: flex; gap: 8px 10px; align-items: center; flex-wrap: wrap; justify-content: center; max-width: calc(100% - 24px); z-index: 3; }
+.plotmap-wrapper .empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 20px; pointer-events: none; }
+.plotmap-wrapper .empty[hidden], .plotmap-wrapper .float[hidden] { display: none; }
+.plotmap-wrapper .empty>div { pointer-events: auto; background: var(--white); border: 1px dashed var(--line2); border-radius: 18px; padding: 26px 28px; max-width: 440px; text-align: center; box-shadow: var(--sh); }
+.plotmap-wrapper .empty h3 { font-size: 18px; font-weight: 800; margin-bottom: 6px; }
+.plotmap-wrapper .empty p { color: var(--muted); margin: 0 0 16px; font-weight: 500; }
+.plotmap-wrapper .empty .row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.plotmap-wrapper .mfoot2 { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; padding: 10px 16px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; font-weight: 600; }
+.plotmap-wrapper .linkbtn { background: none; border: 0; color: var(--muted); font: 600 12px var(--font); text-decoration: underline; cursor: pointer; padding: 0; }
+.plotmap-wrapper .tip { position: fixed; z-index: 30; background: var(--green); color: var(--white); border-radius: 10px; padding: 8px 11px; font-size: 12px; font-weight: 600; pointer-events: none; box-shadow: 0 8px 20px rgba(13,54,19,.3); max-width: 240px; }
+.plotmap-wrapper .tip[hidden] { display: none; }
+.plotmap-wrapper .tip b { font-weight: 800; }
+.plotmap-wrapper .tip div { opacity: .85; }
+
+.plotmap-wrapper .panel { background: var(--off); border: 1px solid var(--line); border-radius: 20px; box-shadow: var(--sh); padding: 18px; display: flex; flex-direction: column; gap: 14px; max-height: calc(100vh - 100px); overflow: auto; min-width: 0; }
+.plotmap-wrapper .eyebrow { font: 500 11px/1 var(--mono); letter-spacing: .12em; color: var(--muted); display: block; margin-bottom: 6px; }
+.plotmap-wrapper .vbadge { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--muted); border-radius: 20px; padding: 2px 11px; font-size: 12px; font-weight: 800; color: var(--muted); white-space: nowrap; }
+.plotmap-wrapper .vbadge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--muted); }
+.plotmap-wrapper .vbadge.sold { background: var(--sold); border-color: var(--green); color: var(--green); }
+.plotmap-wrapper .vbadge.sold::before { background: var(--green); }
+.plotmap-wrapper .agrow { display: flex; gap: 12px; align-items: center; width: 100%; text-align: left; background: var(--white); border: 1px solid var(--line); border-radius: 14px; padding: 8px 12px; cursor: pointer; color: var(--green); transition: border-color .15s; }
+.plotmap-wrapper .agrow:hover { border-color: var(--line2); }
+.plotmap-wrapper .agrow[aria-pressed=true] { border-color: var(--green); background: var(--active); }
+.plotmap-wrapper .agrow .tx { flex: 1; min-width: 0; }
+.plotmap-wrapper .agrow b { display: block; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.plotmap-wrapper .agrow small { color: var(--muted); font-weight: 600; font-size: 12px; }
+.plotmap-wrapper .agrow .bar { display: block; height: 4px; background: var(--active); border-radius: 4px; margin-top: 6px; overflow: hidden; }
+.plotmap-wrapper .agrow[aria-pressed=true] .bar { background: var(--white); }
+.plotmap-wrapper .agrow .bar i { display: block; height: 100%; background: var(--green); border-radius: 4px; opacity: .8; }
+.plotmap-wrapper .agrow .v { font-weight: 800; font-size: 13px; white-space: nowrap; }
+.plotmap-wrapper .note { color: var(--muted); font-size: 12.5px; font-weight: 500; }
+.plotmap-wrapper .f { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.plotmap-wrapper .f>span, .plotmap-wrapper .f>.lab { font-size: 12px; font-weight: 700; color: var(--muted); }
+.plotmap-wrapper .f input, .plotmap-wrapper .f select, .plotmap-wrapper input.in, .plotmap-wrapper select.in { font: 600 14px var(--font); color: var(--green); background: var(--white); border: 1px solid var(--line2); border-radius: 11px; padding: 10px 12px; width: 100%; min-width: 0; }
+.plotmap-wrapper .f input:focus, .plotmap-wrapper .f select:focus { border-color: var(--green); outline: none; }
+.plotmap-wrapper select:disabled { color: var(--muted); background: var(--sec); }
+.plotmap-wrapper .two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.plotmap-wrapper .sseg { display: grid; grid-template-columns: 1fr 1.3fr; border: 1px solid var(--line2); border-radius: 11px; overflow: hidden; background: var(--white); }
+.plotmap-wrapper .sseg button { background: transparent; color: var(--muted); border: 0; padding: 10px 8px; font: 700 13px var(--font); cursor: pointer; }
+.plotmap-wrapper .sseg button+button { border-left: 1px solid var(--line2); }
+.plotmap-wrapper .sseg button[aria-pressed=true] { background: var(--active); color: var(--green); box-shadow: inset 0 -2px 0 var(--green); }
+.plotmap-wrapper .vp { font-size: 12px; color: var(--muted); font-weight: 600; }
+.plotmap-wrapper .err { color: var(--warn); font-size: 13px; font-weight: 600; }
+.plotmap-wrapper .err[hidden] { display: none; }
+.plotmap-wrapper .addag { display: flex; gap: 8px; }
+.plotmap-wrapper .addag[hidden] { display: none; }
+.plotmap-wrapper .acts { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.plotmap-wrapper .acts .sp { flex: 1; }
+.plotmap-wrapper .av { width: 34px; height: 34px; border-radius: 50%; background: var(--active); color: var(--green); display: grid; place-items: center; font-weight: 800; font-size: 12px; flex: none; letter-spacing: .02em; }
+.plotmap-wrapper .av.empty0 { background: transparent; border: 1.5px dashed var(--line2); color: var(--muted); }
+
+.plotmap-wrapper .ov { position: fixed; inset: 0; background: rgba(13,54,19,.34); display: flex; align-items: center; justify-content: center; z-index: 99999; padding: 16px; }
+.plotmap-wrapper .ov[hidden] { display: none !important; }
+.plotmap-wrapper .box { background: var(--white); border-radius: 20px; width: min(480px,100%); max-height: 90vh; overflow: auto; box-shadow: 0 20px 50px rgba(13,54,19,.25); display: flex; flex-direction: column; z-index: 100000; position: relative; }
+.plotmap-wrapper .mhead { display: flex; justify-content: space-between; gap: 12px; padding: 20px 22px 12px; align-items: flex-start; }
+.plotmap-wrapper .mhead h2 { font-size: 20px; font-weight: 800; letter-spacing: -.01em; margin: 0; }
+.plotmap-wrapper .msub { color: var(--muted); font-size: 13px; font-weight: 600; }
+.plotmap-wrapper .x { background: none; border: 0; color: var(--muted); font-size: 26px; line-height: 1; cursor: pointer; padding: 0 4px; }
+.plotmap-wrapper .mbody { padding: 4px 22px 8px; display: flex; flex-direction: column; gap: 14px; }
+.plotmap-wrapper .mfoot { display: flex; gap: 8px; justify-content: flex-end; align-items: center; padding: 14px 22px 20px; border-top: 1px solid var(--line); margin-top: 8px; flex-wrap: wrap; }
+.plotmap-wrapper .mfoot .sp { flex: 1; }
+.plotmap-wrapper .toast { position: fixed; left: 50%; bottom: 30px; transform: translate(-50%,20px); background: var(--green); color: var(--white); font-weight: 600; padding: 11px 18px; border-radius: 12px; opacity: 0; pointer-events: none; transition: .2s; max-width: calc(100% - 32px); z-index: 999999; }
+.plotmap-wrapper .toast.on { opacity: 1; transform: translate(-50%,0); }
+
+@media(max-width:1100px) {
+  .plotmap-wrapper .stage { grid-template-columns: minmax(0,1fr); }
+  .plotmap-wrapper .panel { position: static; height: auto; min-height: 0; max-height: none; }
+}

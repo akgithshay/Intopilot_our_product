@@ -12,12 +12,11 @@ import { Profile } from './components/Profile';
 import { Projects } from './components/Projects';
 import toast, { Toaster } from 'react-hot-toast';
 import { LeadManagement } from './components/LeadManagement';
-
 import { IntegrationModal } from './components/IntegrationModal';
 import { AddClientModal } from './components/AddClientModal';
 import { RecordPaymentModal } from './components/RecordPaymentModal';
-// 🔴 Dedicated Import Page
 import { ImportData } from './components/ImportData';
+import { PlotMap } from './components/PlotMap'; // 🔴 IMPORT FIX KIYA HAI
 
 import { fetchDashboardData } from './services/api';
 import './index.css';
@@ -35,7 +34,6 @@ export function App() {
   const [selectedCaseId, setSelectedCaseId] = useState<number>(1);
   const [selectedProject, setSelectedProject] = useState<string>('');
 
-  // Modal States
   const [isIntegrationModalOpen, setIsIntegrationModalOpen] = useState<boolean>(false);
   const [isAddClientModalOpen, setIsAddClientModalOpen] = useState<boolean>(false);
   const [isAddPaymentModalOpen, setIsAddPaymentModalOpen] = useState<boolean>(false);
@@ -89,14 +87,14 @@ export function App() {
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
-        // Overview mein hum openAddClientModal pass kar rahe hain (Error fixed in Overview.tsx)
         return <Overview cases={dbCases} projects={dbProjects} profile={dbProfile} setActiveTab={setActiveTab} setSelectedCaseId={setSelectedCaseId} setSelectedProject={setSelectedProject} openAddClientModal={() => setIsAddClientModalOpen(true)} />;
-      case 'leads': // 🔴 YEH NAYA CASE ADD KARO
+      case 'leads': 
         return <LeadManagement />;
+      case 'plotmap': 
+        return <PlotMap />; // 🔴 YAHAN RENDER HO RAHA HAI
       case 'invoices':
         return <Invoices cases={dbCases} projects={dbProjects} setSelectedCaseId={setSelectedCaseId} setActiveTab={setActiveTab} />;
       case 'projects':
-        // Projects mein hum openAddClientModal pass kar rahe hain
         return <Projects cases={dbCases} projects={dbProjects} setSelectedProject={setSelectedProject} setActiveTab={setActiveTab} openAddClientModal={() => setIsAddClientModalOpen(true)} triggerAppReload={loadBackendData} />;
       case 'clients':
         return <RecoveryClients cases={dbCases} projects={dbProjects} selectedProject={selectedProject} setSelectedProject={setSelectedProject} setSelectedCaseId={setSelectedCaseId} setActiveTab={setActiveTab} openAddClientModal={() => setIsAddClientModalOpen(true)} />;
@@ -106,7 +104,7 @@ export function App() {
             caseId={selectedCaseId} 
             setActiveTab={setActiveTab} 
             openAddPaymentModal={(id) => { setTargetCaseForPayment(id); setIsAddPaymentModalOpen(true); }}
-            onRefresh={loadBackendData} // 🔴 Ye wali line zaroor add karna 
+            onRefresh={loadBackendData} 
          />;
       case 'installments':
         return <Installments cases={dbCases} projects={dbProjects} setSelectedCaseId={setSelectedCaseId} setActiveTab={setActiveTab} />;
@@ -181,7 +179,6 @@ export function App() {
       <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} onSignOut={handleSignOut} profile={dbProfile} />
 
       <div className="main">
-        {/* Topbar fixed. Passing ALL required props */}
         <Topbar 
           onOpenIntegrations={() => setIsIntegrationModalOpen(true)} 
           profile={dbProfile} 

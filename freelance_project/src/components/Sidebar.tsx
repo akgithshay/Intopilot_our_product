@@ -1,6 +1,6 @@
 // src/components/Sidebar.tsx
 import React, { useState } from 'react';
-import { BarChart3, FileText,Target, Building, Users, Calendar, User, ChevronLeft, ChevronRight, UploadCloud } from 'lucide-react';
+import { BarChart3, FileText, Target, Building, Users, Calendar, User, ChevronLeft, ChevronRight, UploadCloud, Map } from 'lucide-react';
 
 interface SidebarProps {
   activeTab: string;
@@ -9,13 +9,14 @@ interface SidebarProps {
   profile: any; 
 }
 
-export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, }) => {
+export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
-  const navItems = [
+  const navItems: any[] = [
     { key: 'overview', label: 'Dashboard', icon: <BarChart3 size={17} /> },
     { key: 'projects', label: 'Projects & Clients', icon: <Building size={17} /> },
-    { key: 'installments', label: 'Installments & Reminders', icon: <Calendar size={17} /> },
+{ key: 'plotmap', label: 'Plot Map', icon: <Map size={17} /> },
+{ key: 'installments', label: 'Installments & Reminders', icon: <Calendar size={17} /> },
     { key: 'clients', label: 'Recovery Clients', icon: <Users size={17} /> },
     { key: 'invoices', label: 'Invoices', icon: <FileText size={17} /> },
     { key: 'import', label: 'Import Data', icon: <UploadCloud size={17} /> },
@@ -24,7 +25,7 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, }) =>
   ];
 
   return (
-    <div style={{ display: 'flex', position: 'sticky', top: 0, height: '100vh', zIndex: 9999 }}>
+    <div style={{ display: 'flex', position: 'sticky', top: 0, height: '100vh', zIndex: 9999, flexShrink: 0 }}>
       <div 
         className="sidebar" 
         style={{ 
@@ -103,9 +104,6 @@ export const Sidebar: React.FC<SidebarProps> = ({ activeTab, setActiveTab, }) =>
               )}
             </button>
           ))}
-        </div>
-
-        <div style={{ marginTop: 'auto', padding: isCollapsed ? '10px 5px' : '10px 20px', overflow: 'hidden' }}>
         </div>
       </div>
     </div>
